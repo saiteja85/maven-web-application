@@ -10,10 +10,12 @@ stage('build')
 {
 sh "${mavenhome}/bin/mvn clean package"
 }
-stage('executesonarqubeReort')
+/*
+    stage('executesonarqubeReort')
 {
 sh "${mavenhome}/bin/mvn sonar:sonar"
 }
+*/
 stage('uploadartifactintonexus')
 {
 sh "${mavenhome}/bin/mvn clean deploy"
