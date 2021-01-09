@@ -1,6 +1,6 @@
-node
+node('node1')
 {
-properties([[$class: 'JiraProjectProperty'], buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([pollSCM('* * * * * ')])])
+//properties([[$class: 'JiraProjectProperty'], buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([pollSCM('* * * * * ')])])
     def mavenhome = tool name:"maven3.6.3"
 stage('checkoutcode')
 {
@@ -15,7 +15,6 @@ sh "${mavenhome}/bin/mvn clean package"
 {
 sh "${mavenhome}/bin/mvn sonar:sonar"
 }
-*/
 stage('uploadartifactintonexus')
 {
 sh "${mavenhome}/bin/mvn clean deploy"
@@ -30,4 +29,5 @@ stage('sendemailnotification')
 {
 mail bcc: 'saitejaaa85@gmail.com', body: 'done by sai', cc: 'saitejaaa85@gmail.com', from: '', replyTo: '', subject: 'build over', to: 'saitejaaa85@gmail.com'
 }
+*/
 }
